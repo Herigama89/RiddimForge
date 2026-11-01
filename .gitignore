@@ -1,0 +1,6 @@
+build/
+dist/
+tools/render_demo
+*.wav
+.DS_Store
+__pycache__/

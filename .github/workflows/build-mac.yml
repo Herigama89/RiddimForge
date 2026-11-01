@@ -1,0 +1,70 @@
+name: Build macOS (AU + VST3)
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-mac:
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Cache JUCE download
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: juce-9.0.4-${{ runner.os }}
+
+      - name: Configure (universal: Apple Silicon + Intel)
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+
+      - name: Build AU, VST3 and Standalone
+        run: cmake --build build --config Release --target RiddimForge_AU RiddimForge_VST3 RiddimForge_Standalone -j 4
+
+      - name: Ad-hoc code sign
+        run: |
+          A=build/RiddimForge_artefacts/Release
+          codesign --force --deep -s - "$A/AU/RiddimForge.component"
+          codesign --force --deep -s - "$A/VST3/RiddimForge.vst3"
+          codesign --force --deep -s - "$A/Standalone/RiddimForge.app"
+          lipo -info "$A/AU/RiddimForge.component/Contents/MacOS/RiddimForge"
+
+      - name: Validate the Audio Unit (auval)
+        run: |
+          A=build/RiddimForge_artefacts/Release
+          mkdir -p ~/Library/Audio/Plug-Ins/Components
+          rm -rf ~/Library/Audio/Plug-Ins/Components/RiddimForge.component
+          cp -R "$A/AU/RiddimForge.component" ~/Library/Audio/Plug-Ins/Components/
+          killall -9 AudioComponentRegistrar || true
+          sleep 3
+          auval -a | grep -i riddim || true
+          auval -strict -v aumu Rfg1 Ridm
+
+      - name: Package
+        run: |
+          A=build/RiddimForge_artefacts/Release
+          mkdir -p dist/RiddimForge-mac
+          cp -R "$A/AU/RiddimForge.component" "$A/VST3/RiddimForge.vst3" "$A/Standalone/RiddimForge.app" dist/RiddimForge-mac/
+          cp packaging/Install-RiddimForge.command dist/RiddimForge-mac/
+          chmod +x dist/RiddimForge-mac/Install-RiddimForge.command
+          cp README.md dist/RiddimForge-mac/
+          cd dist && ditto -c -k --keepParent RiddimForge-mac RiddimForge-mac.zip
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: RiddimForge-mac
+          path: dist/RiddimForge-mac.zip
+          retention-days: 30
+
+      - name: Publish release (tags only)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/RiddimForge-mac.zip

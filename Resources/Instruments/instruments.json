@@ -1,0 +1,1628 @@
+{
+ "sampleRate": 48000,
+ "instruments": [
+  {
+   "key": "bass1",
+   "name": "Session Bass",
+   "part": "bass",
+   "kind": "notes",
+   "samples": [
+    {
+     "file": "bass1_31_1.flac",
+     "midi": 31,
+     "cents": 9.5,
+     "level": -14.7
+    },
+    {
+     "file": "bass1_31_2.flac",
+     "midi": 31,
+     "cents": 10.8,
+     "level": -13.88
+    },
+    {
+     "file": "bass1_31_3.flac",
+     "midi": 31,
+     "cents": 8.5,
+     "level": -14.66
+    },
+    {
+     "file": "bass1_31_4.flac",
+     "midi": 31,
+     "cents": 19.2,
+     "level": -13.58
+    },
+    {
+     "file": "bass1_36_1.flac",
+     "midi": 36,
+     "cents": -16.1,
+     "level": -12.21
+    },
+    {
+     "file": "bass1_36_2.flac",
+     "midi": 36,
+     "cents": -2.5,
+     "level": -12.48
+    },
+    {
+     "file": "bass1_36_3.flac",
+     "midi": 36,
+     "cents": -5.7,
+     "level": -13.44
+    },
+    {
+     "file": "bass1_36_4.flac",
+     "midi": 36,
+     "cents": -7.4,
+     "level": -13.02
+    },
+    {
+     "file": "bass1_38_1.flac",
+     "midi": 38,
+     "cents": 3.6,
+     "level": -13.84
+    },
+    {
+     "file": "bass1_38_2.flac",
+     "midi": 38,
+     "cents": -2.4,
+     "level": -12.49
+    },
+    {
+     "file": "bass1_38_3.flac",
+     "midi": 38,
+     "cents": -3.5,
+     "level": -14.01
+    },
+    {
+     "file": "bass1_38_4.flac",
+     "midi": 38,
+     "cents": 9.3,
+     "level": -12.71
+    },
+    {
+     "file": "bass1_40_1.flac",
+     "midi": 40,
+     "cents": -1.7,
+     "level": -17.87
+    },
+    {
+     "file": "bass1_41_1.flac",
+     "midi": 41,
+     "cents": 2.9,
+     "level": -16.21
+    },
+    {
+     "file": "bass1_41_2.flac",
+     "midi": 41,
+     "cents": 6.5,
+     "level": -15.64
+    },
+    {
+     "file": "bass1_41_3.flac",
+     "midi": 41,
+     "cents": 4.9,
+     "level": -15.55
+    },
+    {
+     "file": "bass1_41_4.flac",
+     "midi": 41,
+     "cents": -12.3,
+     "level": -17.0
+    },
+    {
+     "file": "bass1_43_1.flac",
+     "midi": 43,
+     "cents": 2.0,
+     "level": -13.54
+    },
+    {
+     "file": "bass1_43_2.flac",
+     "midi": 43,
+     "cents": -0.6,
+     "level": -14.85
+    },
+    {
+     "file": "bass1_43_3.flac",
+     "midi": 43,
+     "cents": 2.2,
+     "level": -13.98
+    },
+    {
+     "file": "bass1_43_4.flac",
+     "midi": 43,
+     "cents": 0.2,
+     "level": -15.03
+    }
+   ],
+   "trimDb": 7.0
+  },
+  {
+   "key": "bass2",
+   "name": "5-String Fingered",
+   "part": "bass",
+   "kind": "notes",
+   "samples": [
+    {
+     "file": "bass2_31_1.flac",
+     "midi": 31,
+     "cents": 42.4,
+     "level": -16.66
+    },
+    {
+     "file": "bass2_32_1.flac",
+     "midi": 32,
+     "cents": 21.4,
+     "level": -13.26
+    },
+    {
+     "file": "bass2_32_2.flac",
+     "midi": 32,
+     "cents": 20.3,
+     "level": -15.1
+    },
+    {
+     "file": "bass2_32_3.flac",
+     "midi": 32,
+     "cents": 14.4,
+     "level": -15.31
+    },
+    {
+     "file": "bass2_33_1.flac",
+     "midi": 33,
+     "cents": 11.7,
+     "level": -14.01
+    },
+    {
+     "file": "bass2_33_2.flac",
+     "midi": 33,
+     "cents": 17.8,
+     "level": -12.7
+    },
+    {
+     "file": "bass2_33_3.flac",
+     "midi": 33,
+     "cents": 17.9,
+     "level": -13.45
+    },
+    {
+     "file": "bass2_36_1.flac",
+     "midi": 36,
+     "cents": 10.1,
+     "level": -13.04
+    },
+    {
+     "file": "bass2_36_2.flac",
+     "midi": 36,
+     "cents": 15.6,
+     "level": -14.15
+    },
+    {
+     "file": "bass2_36_3.flac",
+     "midi": 36,
+     "cents": 19.5,
+     "level": -12.58
+    },
+    {
+     "file": "bass2_38_1.flac",
+     "midi": 38,
+     "cents": 13.1,
+     "level": -12.86
+    },
+    {
+     "file": "bass2_40_1.flac",
+     "midi": 40,
+     "cents": 9.5,
+     "level": -13.72
+    },
+    {
+     "file": "bass2_45_1.flac",
+     "midi": 45,
+     "cents": 6.1,
+     "level": -11.14
+    },
+    {
+     "file": "bass2_53_1.flac",
+     "midi": 53,
+     "cents": 10.3,
+     "level": -16.83
+    },
+    {
+     "file": "bass2_53_2.flac",
+     "midi": 53,
+     "cents": 14.8,
+     "level": -15.69
+    },
+    {
+     "file": "bass2_53_3.flac",
+     "midi": 53,
+     "cents": 13.2,
+     "level": -16.28
+    }
+   ],
+   "trimDb": 4.0
+  },
+  {
+   "key": "skanky",
+   "name": "Skanky Guitar",
+   "part": "skank",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "skanky_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -34.94
+    },
+    {
+     "file": "skanky_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -11.18
+    },
+    {
+     "file": "skanky_7maj_3.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.96
+    },
+    {
+     "file": "skanky_7maj_4.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.54
+    },
+    {
+     "file": "skanky_7maj_5.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.17
+    },
+    {
+     "file": "skanky_7maj_6.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -8.68
+    },
+    {
+     "file": "skanky_7maj_7.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -8.44
+    },
+    {
+     "file": "skanky_7maj_8.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -5.93
+    },
+    {
+     "file": "skanky_5maj_1.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -13.81
+    },
+    {
+     "file": "skanky_5maj_2.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -10.87
+    },
+    {
+     "file": "skanky_5maj_3.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -10.18
+    },
+    {
+     "file": "skanky_5maj_4.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -9.59
+    },
+    {
+     "file": "skanky_5maj_5.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -9.49
+    },
+    {
+     "file": "skanky_5maj_6.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -8.96
+    },
+    {
+     "file": "skanky_5maj_7.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -7.68
+    },
+    {
+     "file": "skanky_5maj_8.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -5.8
+    },
+    {
+     "file": "skanky_mute_1.flac",
+     "root": -1,
+     "q": "mute",
+     "level": -7.25
+    },
+    {
+     "file": "skanky_mute_2.flac",
+     "root": -1,
+     "q": "mute",
+     "level": -7.44
+    },
+    {
+     "file": "skanky_mute_3.flac",
+     "root": -1,
+     "q": "mute",
+     "level": -8.78
+    },
+    {
+     "file": "skanky_mute_4.flac",
+     "root": -1,
+     "q": "mute",
+     "level": -11.45
+    },
+    {
+     "file": "skanky_mute_5.flac",
+     "root": -1,
+     "q": "mute",
+     "level": -12.34
+    }
+   ],
+   "trimDb": 17.0
+  },
+  {
+   "key": "chop",
+   "name": "Chop Guitar",
+   "part": "skank",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "chop_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -14.58
+    },
+    {
+     "file": "chop_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -12.3
+    },
+    {
+     "file": "chop_7maj_3.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -11.29
+    },
+    {
+     "file": "chop_7maj_4.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -10.59
+    },
+    {
+     "file": "chop_7maj_5.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.71
+    },
+    {
+     "file": "chop_7maj_6.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -8.77
+    },
+    {
+     "file": "chop_5maj_1.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -15.27
+    },
+    {
+     "file": "chop_5maj_2.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -14.68
+    },
+    {
+     "file": "chop_5maj_3.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -11.98
+    },
+    {
+     "file": "chop_5maj_4.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -11.16
+    },
+    {
+     "file": "chop_5maj_5.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -11.09
+    },
+    {
+     "file": "chop_5maj_6.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -9.08
+    }
+   ],
+   "trimDb": 14.0
+  },
+  {
+   "key": "clean",
+   "name": "Clean Guitar",
+   "part": "skank",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "clean_9min_1.flac",
+     "root": 9,
+     "q": "min",
+     "level": -37.51
+    },
+    {
+     "file": "clean_9min_2.flac",
+     "root": 9,
+     "q": "min",
+     "level": -8.78
+    },
+    {
+     "file": "clean_9min_3.flac",
+     "root": 9,
+     "q": "min",
+     "level": -8.08
+    },
+    {
+     "file": "clean_9min_4.flac",
+     "root": 9,
+     "q": "min",
+     "level": -7.16
+    },
+    {
+     "file": "clean_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.56
+    },
+    {
+     "file": "clean_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.53
+    },
+    {
+     "file": "clean_7maj_3.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -7.07
+    }
+   ],
+   "trimDb": 13.0
+  },
+  {
+   "key": "bubble",
+   "name": "Bubble Organ",
+   "part": "organ",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "bubble_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -16.94
+    },
+    {
+     "file": "bubble_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -15.62
+    },
+    {
+     "file": "bubble_7maj_3.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -15.11
+    },
+    {
+     "file": "bubble_7maj_4.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -13.36
+    },
+    {
+     "file": "bubble_7maj_5.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -11.17
+    },
+    {
+     "file": "bubble_7maj_6.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -3.09
+    },
+    {
+     "file": "bubble_7maj_7.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -0.57
+    },
+    {
+     "file": "bubble_7maj_8.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -0.34
+    },
+    {
+     "file": "bubble_5maj_1.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -15.81
+    },
+    {
+     "file": "bubble_5maj_2.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -15.15
+    },
+    {
+     "file": "bubble_5maj_3.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -14.43
+    },
+    {
+     "file": "bubble_5maj_4.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -14.09
+    },
+    {
+     "file": "bubble_5maj_5.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -13.67
+    },
+    {
+     "file": "bubble_5maj_6.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -12.95
+    },
+    {
+     "file": "bubble_5maj_7.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -12.39
+    },
+    {
+     "file": "bubble_5maj_8.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -8.56
+    },
+    {
+     "file": "bubble_75_1.flac",
+     "root": 7,
+     "q": "5",
+     "level": -4.28
+    },
+    {
+     "file": "bubble_75_2.flac",
+     "root": 7,
+     "q": "5",
+     "level": -3.05
+    },
+    {
+     "file": "bubble_75_3.flac",
+     "root": 7,
+     "q": "5",
+     "level": -2.34
+    },
+    {
+     "file": "bubble_75_4.flac",
+     "root": 7,
+     "q": "5",
+     "level": -2.03
+    },
+    {
+     "file": "bubble_75_5.flac",
+     "root": 7,
+     "q": "5",
+     "level": -1.14
+    },
+    {
+     "file": "bubble_75_6.flac",
+     "root": 7,
+     "q": "5",
+     "level": -0.7
+    },
+    {
+     "file": "bubble_75_7.flac",
+     "root": 7,
+     "q": "5",
+     "level": -0.3
+    },
+    {
+     "file": "bubble_75_8.flac",
+     "root": 7,
+     "q": "5",
+     "level": -0.27
+    },
+    {
+     "file": "bubble_2min_1.flac",
+     "root": 2,
+     "q": "min",
+     "level": -14.34
+    },
+    {
+     "file": "bubble_2min_2.flac",
+     "root": 2,
+     "q": "min",
+     "level": -13.65
+    },
+    {
+     "file": "bubble_2min_3.flac",
+     "root": 2,
+     "q": "min",
+     "level": -11.95
+    }
+   ],
+   "trimDb": 6.0
+  },
+  {
+   "key": "percorg",
+   "name": "Perc Organ",
+   "part": "organ",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "percorg_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -19.6
+    },
+    {
+     "file": "percorg_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -17.02
+    },
+    {
+     "file": "percorg_7maj_3.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -14.49
+    },
+    {
+     "file": "percorg_7maj_4.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -12.23
+    },
+    {
+     "file": "percorg_7maj_5.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -11.74
+    },
+    {
+     "file": "percorg_7maj_6.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -10.84
+    },
+    {
+     "file": "percorg_55_1.flac",
+     "root": 5,
+     "q": "5",
+     "level": -22.34
+    },
+    {
+     "file": "percorg_55_2.flac",
+     "root": 5,
+     "q": "5",
+     "level": -21.95
+    },
+    {
+     "file": "percorg_55_3.flac",
+     "root": 5,
+     "q": "5",
+     "level": -19.15
+    },
+    {
+     "file": "percorg_55_4.flac",
+     "root": 5,
+     "q": "5",
+     "level": -15.81
+    },
+    {
+     "file": "percorg_55_5.flac",
+     "root": 5,
+     "q": "5",
+     "level": -13.09
+    },
+    {
+     "file": "percorg_55_6.flac",
+     "root": 5,
+     "q": "5",
+     "level": -9.71
+    },
+    {
+     "file": "percorg_5maj_1.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -18.2
+    },
+    {
+     "file": "percorg_5maj_2.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -15.43
+    },
+    {
+     "file": "percorg_5maj_3.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -12.26
+    },
+    {
+     "file": "percorg_5maj_4.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -10.4
+    },
+    {
+     "file": "percorg_5maj_5.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -10.04
+    },
+    {
+     "file": "percorg_5maj_6.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -9.24
+    },
+    {
+     "file": "percorg_75_1.flac",
+     "root": 7,
+     "q": "5",
+     "level": -22.32
+    },
+    {
+     "file": "percorg_75_2.flac",
+     "root": 7,
+     "q": "5",
+     "level": -21.9
+    },
+    {
+     "file": "percorg_75_3.flac",
+     "root": 7,
+     "q": "5",
+     "level": -21.03
+    },
+    {
+     "file": "percorg_75_4.flac",
+     "root": 7,
+     "q": "5",
+     "level": -21.01
+    },
+    {
+     "file": "percorg_75_5.flac",
+     "root": 7,
+     "q": "5",
+     "level": -19.96
+    },
+    {
+     "file": "percorg_75_6.flac",
+     "root": 7,
+     "q": "5",
+     "level": -17.23
+    },
+    {
+     "file": "percorg_2min_1.flac",
+     "root": 2,
+     "q": "min",
+     "level": -22.32
+    },
+    {
+     "file": "percorg_2min_2.flac",
+     "root": 2,
+     "q": "min",
+     "level": -18.13
+    },
+    {
+     "file": "percorg_2min_3.flac",
+     "root": 2,
+     "q": "min",
+     "level": -13.85
+    },
+    {
+     "file": "percorg_2min_4.flac",
+     "root": 2,
+     "q": "min",
+     "level": -12.83
+    },
+    {
+     "file": "percorg_2min_5.flac",
+     "root": 2,
+     "q": "min",
+     "level": -11.25
+    },
+    {
+     "file": "percorg_2min_6.flac",
+     "root": 2,
+     "q": "min",
+     "level": -9.37
+    },
+    {
+     "file": "percorg_2maj_1.flac",
+     "root": 2,
+     "q": "maj",
+     "level": -13.56
+    },
+    {
+     "file": "percorg_2maj_2.flac",
+     "root": 2,
+     "q": "maj",
+     "level": -12.74
+    },
+    {
+     "file": "percorg_2maj_3.flac",
+     "root": 2,
+     "q": "maj",
+     "level": -11.25
+    },
+    {
+     "file": "percorg_25_1.flac",
+     "root": 2,
+     "q": "5",
+     "level": -17.63
+    },
+    {
+     "file": "percorg_25_2.flac",
+     "root": 2,
+     "q": "5",
+     "level": -15.61
+    }
+   ],
+   "trimDb": 8.5
+  },
+  {
+   "key": "organ4",
+   "name": "Organ 4",
+   "part": "organ",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "organ4_4min_1.flac",
+     "root": 4,
+     "q": "min",
+     "level": -12.32
+    },
+    {
+     "file": "organ4_4min_2.flac",
+     "root": 4,
+     "q": "min",
+     "level": -11.28
+    },
+    {
+     "file": "organ4_4min_3.flac",
+     "root": 4,
+     "q": "min",
+     "level": -10.51
+    },
+    {
+     "file": "organ4_4min_4.flac",
+     "root": 4,
+     "q": "min",
+     "level": -9.48
+    },
+    {
+     "file": "organ4_4min_5.flac",
+     "root": 4,
+     "q": "min",
+     "level": -8.81
+    },
+    {
+     "file": "organ4_95_1.flac",
+     "root": 9,
+     "q": "5",
+     "level": -16.89
+    },
+    {
+     "file": "organ4_95_2.flac",
+     "root": 9,
+     "q": "5",
+     "level": -16.7
+    },
+    {
+     "file": "organ4_95_3.flac",
+     "root": 9,
+     "q": "5",
+     "level": -15.59
+    },
+    {
+     "file": "organ4_95_4.flac",
+     "root": 9,
+     "q": "5",
+     "level": -15.12
+    },
+    {
+     "file": "organ4_95_5.flac",
+     "root": 9,
+     "q": "5",
+     "level": -14.96
+    },
+    {
+     "file": "organ4_9min_1.flac",
+     "root": 9,
+     "q": "min",
+     "level": -11.11
+    },
+    {
+     "file": "organ4_9min_2.flac",
+     "root": 9,
+     "q": "min",
+     "level": -10.58
+    },
+    {
+     "file": "organ4_9min_3.flac",
+     "root": 9,
+     "q": "min",
+     "level": -10.44
+    },
+    {
+     "file": "organ4_9min_4.flac",
+     "root": 9,
+     "q": "min",
+     "level": -10.41
+    },
+    {
+     "file": "organ4_9min_5.flac",
+     "root": 9,
+     "q": "min",
+     "level": -10.12
+    },
+    {
+     "file": "organ4_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -11.49
+    },
+    {
+     "file": "organ4_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.23
+    },
+    {
+     "file": "organ4_7maj_3.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -8.8
+    },
+    {
+     "file": "organ4_75_1.flac",
+     "root": 7,
+     "q": "5",
+     "level": -17.13
+    },
+    {
+     "file": "organ4_75_2.flac",
+     "root": 7,
+     "q": "5",
+     "level": -16.07
+    },
+    {
+     "file": "organ4_75_3.flac",
+     "root": 7,
+     "q": "5",
+     "level": -15.74
+    },
+    {
+     "file": "organ4_25_1.flac",
+     "root": 2,
+     "q": "5",
+     "level": -17.84
+    },
+    {
+     "file": "organ4_25_2.flac",
+     "root": 2,
+     "q": "5",
+     "level": -16.23
+    }
+   ],
+   "trimDb": 7.0
+  },
+  {
+   "key": "piano1",
+   "name": "Session Piano",
+   "part": "piano",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "piano1_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -20.05
+    },
+    {
+     "file": "piano1_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -9.24
+    },
+    {
+     "file": "piano1_7maj_3.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -8.45
+    },
+    {
+     "file": "piano1_7maj_4.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -7.62
+    },
+    {
+     "file": "piano1_7maj_5.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -7.43
+    },
+    {
+     "file": "piano1_7maj_6.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -6.28
+    },
+    {
+     "file": "piano1_5maj_1.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -11.84
+    },
+    {
+     "file": "piano1_5maj_2.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -10.5
+    },
+    {
+     "file": "piano1_5maj_3.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -9.24
+    },
+    {
+     "file": "piano1_5maj_4.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -8.81
+    },
+    {
+     "file": "piano1_5maj_5.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -8.34
+    },
+    {
+     "file": "piano1_5maj_6.flac",
+     "root": 5,
+     "q": "maj",
+     "level": -7.33
+    },
+    {
+     "file": "piano1_2min_1.flac",
+     "root": 2,
+     "q": "min",
+     "level": -12.58
+    },
+    {
+     "file": "piano1_2min_2.flac",
+     "root": 2,
+     "q": "min",
+     "level": -12.11
+    },
+    {
+     "file": "piano1_2min_3.flac",
+     "root": 2,
+     "q": "min",
+     "level": -11.08
+    },
+    {
+     "file": "piano1_2min_4.flac",
+     "root": 2,
+     "q": "min",
+     "level": -11.02
+    },
+    {
+     "file": "piano1_2min_5.flac",
+     "root": 2,
+     "q": "min",
+     "level": -10.53
+    },
+    {
+     "file": "piano1_2min_6.flac",
+     "root": 2,
+     "q": "min",
+     "level": -8.94
+    },
+    {
+     "file": "piano1_25_1.flac",
+     "root": 2,
+     "q": "5",
+     "level": -12.0
+    },
+    {
+     "file": "piano1_25_2.flac",
+     "root": 2,
+     "q": "5",
+     "level": -9.89
+    }
+   ],
+   "trimDb": 12.5
+  },
+  {
+   "key": "piano2",
+   "name": "Acoustic Piano",
+   "part": "piano",
+   "kind": "chords",
+   "samples": [
+    {
+     "file": "piano2_9min_1.flac",
+     "root": 9,
+     "q": "min",
+     "level": -9.81
+    },
+    {
+     "file": "piano2_9min_2.flac",
+     "root": 9,
+     "q": "min",
+     "level": -9.77
+    },
+    {
+     "file": "piano2_9min_3.flac",
+     "root": 9,
+     "q": "min",
+     "level": -9.31
+    },
+    {
+     "file": "piano2_9min_4.flac",
+     "root": 9,
+     "q": "min",
+     "level": -9.25
+    },
+    {
+     "file": "piano2_7maj_1.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -6.41
+    },
+    {
+     "file": "piano2_7maj_2.flac",
+     "root": 7,
+     "q": "maj",
+     "level": -6.25
+    }
+   ],
+   "trimDb": 12.5
+  },
+  {
+   "key": "leadgtr",
+   "name": "Lead Guitar",
+   "part": "lead",
+   "kind": "notes",
+   "samples": [
+    {
+     "file": "leadgtr_55_1.flac",
+     "midi": 55,
+     "cents": 3.8,
+     "level": -33.75
+    },
+    {
+     "file": "leadgtr_55_2.flac",
+     "midi": 55,
+     "cents": 3.8,
+     "level": -29.09
+    },
+    {
+     "file": "leadgtr_59_1.flac",
+     "midi": 59,
+     "cents": 17.3,
+     "level": -19.02
+    },
+    {
+     "file": "leadgtr_59_2.flac",
+     "midi": 59,
+     "cents": 9.4,
+     "level": -28.48
+    },
+    {
+     "file": "leadgtr_62_1.flac",
+     "midi": 62,
+     "cents": 5.8,
+     "level": -16.44
+    },
+    {
+     "file": "leadgtr_62_2.flac",
+     "midi": 62,
+     "cents": 24.6,
+     "level": -11.79
+    },
+    {
+     "file": "leadgtr_64_1.flac",
+     "midi": 64,
+     "cents": -0.1,
+     "level": -13.7
+    },
+    {
+     "file": "leadgtr_67_1.flac",
+     "midi": 67,
+     "cents": 10.5,
+     "level": -20.61
+    },
+    {
+     "file": "leadgtr_67_2.flac",
+     "midi": 67,
+     "cents": -2.0,
+     "level": -13.6
+    },
+    {
+     "file": "leadgtr_69_1.flac",
+     "midi": 69,
+     "cents": 9.0,
+     "level": -8.22
+    },
+    {
+     "file": "leadgtr_69_2.flac",
+     "midi": 69,
+     "cents": 6.3,
+     "level": -17.34
+    },
+    {
+     "file": "leadgtr_70_1.flac",
+     "midi": 70,
+     "cents": 54.6,
+     "level": -13.55
+    },
+    {
+     "file": "leadgtr_70_2.flac",
+     "midi": 70,
+     "cents": 54.7,
+     "level": -13.55
+    },
+    {
+     "file": "leadgtr_71_1.flac",
+     "midi": 71,
+     "cents": 15.6,
+     "level": -23.29
+    },
+    {
+     "file": "leadgtr_71_2.flac",
+     "midi": 71,
+     "cents": 21.3,
+     "level": -18.48
+    },
+    {
+     "file": "leadgtr_74_1.flac",
+     "midi": 74,
+     "cents": -6.8,
+     "level": -14.34
+    },
+    {
+     "file": "leadgtr_74_2.flac",
+     "midi": 74,
+     "cents": -2.8,
+     "level": -8.17
+    },
+    {
+     "file": "leadgtr_76_1.flac",
+     "midi": 76,
+     "cents": 4.0,
+     "level": -11.37
+    },
+    {
+     "file": "leadgtr_76_2.flac",
+     "midi": 76,
+     "cents": -22.6,
+     "level": -12.38
+    },
+    {
+     "file": "leadgtr_77_1.flac",
+     "midi": 77,
+     "cents": -31.4,
+     "level": -11.22
+    },
+    {
+     "file": "leadgtr_79_1.flac",
+     "midi": 79,
+     "cents": -9.1,
+     "level": -6.43
+    },
+    {
+     "file": "leadgtr_79_2.flac",
+     "midi": 79,
+     "cents": 20.7,
+     "level": -9.38
+    },
+    {
+     "file": "leadgtr_81_1.flac",
+     "midi": 81,
+     "cents": -18.4,
+     "level": -11.59
+    },
+    {
+     "file": "leadgtr_81_2.flac",
+     "midi": 81,
+     "cents": -3.8,
+     "level": -16.18
+    },
+    {
+     "file": "leadgtr_82_1.flac",
+     "midi": 82,
+     "cents": 18.6,
+     "level": -12.47
+    },
+    {
+     "file": "leadgtr_83_1.flac",
+     "midi": 83,
+     "cents": -29.7,
+     "level": -13.25
+    }
+   ],
+   "trimDb": -2.0
+  },
+  {
+   "key": "pluckjc",
+   "name": "Pluck Guitar (JC)",
+   "part": "lead",
+   "kind": "notes",
+   "samples": [
+    {
+     "file": "pluckjc_55_1.flac",
+     "midi": 55,
+     "cents": -3.9,
+     "level": -22.98
+    },
+    {
+     "file": "pluckjc_55_2.flac",
+     "midi": 55,
+     "cents": -4.0,
+     "level": -21.52
+    },
+    {
+     "file": "pluckjc_55_3.flac",
+     "midi": 55,
+     "cents": 0.0,
+     "level": -20.61
+    },
+    {
+     "file": "pluckjc_55_4.flac",
+     "midi": 55,
+     "cents": -0.1,
+     "level": -21.44
+    },
+    {
+     "file": "pluckjc_60_1.flac",
+     "midi": 60,
+     "cents": -1.7,
+     "level": -21.35
+    },
+    {
+     "file": "pluckjc_60_2.flac",
+     "midi": 60,
+     "cents": -9.3,
+     "level": -21.6
+    },
+    {
+     "file": "pluckjc_60_3.flac",
+     "midi": 60,
+     "cents": 4.3,
+     "level": -22.22
+    },
+    {
+     "file": "pluckjc_60_4.flac",
+     "midi": 60,
+     "cents": -1.7,
+     "level": -21.14
+    },
+    {
+     "file": "pluckjc_62_1.flac",
+     "midi": 62,
+     "cents": 0.2,
+     "level": -23.74
+    },
+    {
+     "file": "pluckjc_62_2.flac",
+     "midi": 62,
+     "cents": 4.2,
+     "level": -23.33
+    },
+    {
+     "file": "pluckjc_62_3.flac",
+     "midi": 62,
+     "cents": 7.8,
+     "level": -22.54
+    },
+    {
+     "file": "pluckjc_65_1.flac",
+     "midi": 65,
+     "cents": -5.2,
+     "level": -18.52
+    },
+    {
+     "file": "pluckjc_65_2.flac",
+     "midi": 65,
+     "cents": 0.5,
+     "level": -17.47
+    },
+    {
+     "file": "pluckjc_65_3.flac",
+     "midi": 65,
+     "cents": -4.0,
+     "level": -16.9
+    },
+    {
+     "file": "pluckjc_65_4.flac",
+     "midi": 65,
+     "cents": -4.3,
+     "level": -17.48
+    },
+    {
+     "file": "pluckjc_67_1.flac",
+     "midi": 67,
+     "cents": -8.3,
+     "level": -16.75
+    },
+    {
+     "file": "pluckjc_67_2.flac",
+     "midi": 67,
+     "cents": 3.3,
+     "level": -15.36
+    },
+    {
+     "file": "pluckjc_67_3.flac",
+     "midi": 67,
+     "cents": 6.8,
+     "level": -16.7
+    },
+    {
+     "file": "pluckjc_67_4.flac",
+     "midi": 67,
+     "cents": 5.3,
+     "level": -15.9
+    },
+    {
+     "file": "pluckjc_69_1.flac",
+     "midi": 69,
+     "cents": 9.6,
+     "level": -19.63
+    },
+    {
+     "file": "pluckjc_69_2.flac",
+     "midi": 69,
+     "cents": 8.6,
+     "level": -20.12
+    }
+   ],
+   "trimDb": 8.5
+  },
+  {
+   "key": "pluckk",
+   "name": "Pluck Guitar (Kahn)",
+   "part": "lead",
+   "kind": "notes",
+   "samples": [
+    {
+     "file": "pluckk_48_1.flac",
+     "midi": 48,
+     "cents": -8.9,
+     "level": -19.76
+    },
+    {
+     "file": "pluckk_48_2.flac",
+     "midi": 48,
+     "cents": -0.9,
+     "level": -21.55
+    },
+    {
+     "file": "pluckk_48_3.flac",
+     "midi": 48,
+     "cents": -2.9,
+     "level": -21.56
+    },
+    {
+     "file": "pluckk_48_4.flac",
+     "midi": 48,
+     "cents": -4.0,
+     "level": -20.04
+    },
+    {
+     "file": "pluckk_50_1.flac",
+     "midi": 50,
+     "cents": -3.2,
+     "level": -21.93
+    },
+    {
+     "file": "pluckk_50_2.flac",
+     "midi": 50,
+     "cents": -4.9,
+     "level": -24.49
+    },
+    {
+     "file": "pluckk_50_3.flac",
+     "midi": 50,
+     "cents": 0.9,
+     "level": -24.11
+    },
+    {
+     "file": "pluckk_50_4.flac",
+     "midi": 50,
+     "cents": -10.4,
+     "level": -22.42
+    },
+    {
+     "file": "pluckk_53_1.flac",
+     "midi": 53,
+     "cents": 0.3,
+     "level": -21.72
+    },
+    {
+     "file": "pluckk_53_2.flac",
+     "midi": 53,
+     "cents": -0.3,
+     "level": -23.39
+    },
+    {
+     "file": "pluckk_53_3.flac",
+     "midi": 53,
+     "cents": -5.0,
+     "level": -23.77
+    },
+    {
+     "file": "pluckk_53_4.flac",
+     "midi": 53,
+     "cents": -0.0,
+     "level": -18.62
+    },
+    {
+     "file": "pluckk_55_1.flac",
+     "midi": 55,
+     "cents": 1.2,
+     "level": -18.95
+    },
+    {
+     "file": "pluckk_55_2.flac",
+     "midi": 55,
+     "cents": -0.9,
+     "level": -18.81
+    },
+    {
+     "file": "pluckk_55_3.flac",
+     "midi": 55,
+     "cents": -2.1,
+     "level": -19.01
+    },
+    {
+     "file": "pluckk_55_4.flac",
+     "midi": 55,
+     "cents": 5.4,
+     "level": -15.84
+    }
+   ],
+   "trimDb": 8.0
+  }
+ ]
+}

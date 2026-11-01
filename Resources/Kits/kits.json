@@ -1,0 +1,1425 @@
+{
+ "buses": [
+  "Kick In",
+  "Kick Out",
+  "Snare Top",
+  "Snare Bottom",
+  "Hi-Hat",
+  "Tom Hi",
+  "Tom Mid",
+  "Tom Floor",
+  "Rototoms",
+  "Timbales",
+  "Percussion",
+  "Cymbals",
+  "Overheads",
+  "Room"
+ ],
+ "sampleRate": 48000,
+ "kits": [
+  {
+   "name": "Studio Kit",
+   "description": "Multi-mic kit from your session: close mics, bleed-free overheads, generated room",
+   "articulations": [
+    {
+     "key": "kick",
+     "name": "Kick",
+     "notes": [
+      36,
+      35
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       0,
+       "mono"
+      ],
+      [
+       1,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_kick_01.flac",
+       "level": -7.86
+      },
+      {
+       "file": "studio_kick_02.flac",
+       "level": -8.04
+      },
+      {
+       "file": "studio_kick_03.flac",
+       "level": -7.64
+      },
+      {
+       "file": "studio_kick_04.flac",
+       "level": -10.28
+      },
+      {
+       "file": "studio_kick_05.flac",
+       "level": -9.15
+      },
+      {
+       "file": "studio_kick_06.flac",
+       "level": -8.16
+      },
+      {
+       "file": "studio_kick_07.flac",
+       "level": -8.65
+      },
+      {
+       "file": "studio_kick_08.flac",
+       "level": -8.39
+      },
+      {
+       "file": "studio_kick_09.flac",
+       "level": -9.55
+      },
+      {
+       "file": "studio_kick_10.flac",
+       "level": -19.01
+      }
+     ]
+    },
+    {
+     "key": "snare",
+     "name": "Snare (crack)",
+     "notes": [
+      38
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       2,
+       "mono"
+      ],
+      [
+       3,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_snare_01.flac",
+       "level": -7.18
+      },
+      {
+       "file": "studio_snare_02.flac",
+       "level": -7.98
+      },
+      {
+       "file": "studio_snare_03.flac",
+       "level": -7.83
+      },
+      {
+       "file": "studio_snare_04.flac",
+       "level": -8.14
+      },
+      {
+       "file": "studio_snare_05.flac",
+       "level": -7.84
+      },
+      {
+       "file": "studio_snare_06.flac",
+       "level": -8.11
+      },
+      {
+       "file": "studio_snare_07.flac",
+       "level": -7.84
+      },
+      {
+       "file": "studio_snare_08.flac",
+       "level": -7.01
+      },
+      {
+       "file": "studio_snare_09.flac",
+       "level": -7.44
+      },
+      {
+       "file": "studio_snare_10.flac",
+       "level": -7.0
+      }
+     ]
+    },
+    {
+     "key": "snare_fill",
+     "name": "Snare (fill / center)",
+     "notes": [
+      40
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       2,
+       "mono"
+      ],
+      [
+       3,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_snare_fill_01.flac",
+       "level": -10.44
+      },
+      {
+       "file": "studio_snare_fill_02.flac",
+       "level": -9.5
+      },
+      {
+       "file": "studio_snare_fill_03.flac",
+       "level": -8.33
+      },
+      {
+       "file": "studio_snare_fill_04.flac",
+       "level": -8.28
+      },
+      {
+       "file": "studio_snare_fill_05.flac",
+       "level": -7.17
+      },
+      {
+       "file": "studio_snare_fill_06.flac",
+       "level": -6.28
+      }
+     ]
+    },
+    {
+     "key": "snare_ghost",
+     "name": "Snare (ghost)",
+     "notes": [],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       2,
+       "mono"
+      ],
+      [
+       3,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_snare_ghost_01.flac",
+       "level": -22.77
+      },
+      {
+       "file": "studio_snare_ghost_02.flac",
+       "level": -20.14
+      },
+      {
+       "file": "studio_snare_ghost_03.flac",
+       "level": -26.67
+      },
+      {
+       "file": "studio_snare_ghost_04.flac",
+       "level": -14.4
+      }
+     ]
+    },
+    {
+     "key": "hat_closed",
+     "name": "Hi-Hat Closed",
+     "notes": [
+      42,
+      44
+     ],
+     "choke": 1,
+     "tune": 0.0,
+     "routing": [
+      [
+       4,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_hat_closed_01.flac",
+       "level": -39.86
+      },
+      {
+       "file": "studio_hat_closed_02.flac",
+       "level": -20.8
+      },
+      {
+       "file": "studio_hat_closed_03.flac",
+       "level": -37.71
+      },
+      {
+       "file": "studio_hat_closed_04.flac",
+       "level": -22.92
+      },
+      {
+       "file": "studio_hat_closed_05.flac",
+       "level": -21.19
+      },
+      {
+       "file": "studio_hat_closed_06.flac",
+       "level": -23.08
+      },
+      {
+       "file": "studio_hat_closed_07.flac",
+       "level": -25.38
+      },
+      {
+       "file": "studio_hat_closed_08.flac",
+       "level": -25.43
+      },
+      {
+       "file": "studio_hat_closed_09.flac",
+       "level": -38.77
+      },
+      {
+       "file": "studio_hat_closed_10.flac",
+       "level": -34.2
+      }
+     ]
+    },
+    {
+     "key": "hat_open",
+     "name": "Hi-Hat Open",
+     "notes": [
+      46
+     ],
+     "choke": 1,
+     "tune": 0.0,
+     "routing": [
+      [
+       4,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_hat_open_01.flac",
+       "level": -25.8
+      },
+      {
+       "file": "studio_hat_open_02.flac",
+       "level": -37.23
+      },
+      {
+       "file": "studio_hat_open_03.flac",
+       "level": -22.37
+      },
+      {
+       "file": "studio_hat_open_04.flac",
+       "level": -38.92
+      },
+      {
+       "file": "studio_hat_open_05.flac",
+       "level": -20.78
+      },
+      {
+       "file": "studio_hat_open_06.flac",
+       "level": -33.35
+      }
+     ]
+    },
+    {
+     "key": "tom_hi",
+     "name": "Tom Hi",
+     "notes": [
+      48,
+      50
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       5,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_tom_hi_01.flac",
+       "level": -12.73
+      }
+     ]
+    },
+    {
+     "key": "tom_mid",
+     "name": "Tom Mid",
+     "notes": [
+      45,
+      47
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       6,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_tom_mid_01.flac",
+       "level": -17.88
+      },
+      {
+       "file": "studio_tom_mid_02.flac",
+       "level": -11.18
+      },
+      {
+       "file": "studio_tom_mid_03.flac",
+       "level": -15.3
+      },
+      {
+       "file": "studio_tom_mid_04.flac",
+       "level": -12.84
+      },
+      {
+       "file": "studio_tom_mid_05.flac",
+       "level": -15.46
+      },
+      {
+       "file": "studio_tom_mid_06.flac",
+       "level": -12.74
+      }
+     ]
+    },
+    {
+     "key": "tom_floor",
+     "name": "Tom Floor",
+     "notes": [
+      41,
+      43
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       7,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_tom_floor_01.flac",
+       "level": -19.02
+      },
+      {
+       "file": "studio_tom_floor_02.flac",
+       "level": -15.7
+      },
+      {
+       "file": "studio_tom_floor_03.flac",
+       "level": -16.33
+      },
+      {
+       "file": "studio_tom_floor_04.flac",
+       "level": -13.91
+      }
+     ]
+    },
+    {
+     "key": "roto_hi",
+     "name": "Rototom Hi",
+     "notes": [
+      93
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       8,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_roto_hi_01.flac",
+       "level": -22.58
+      },
+      {
+       "file": "studio_roto_hi_02.flac",
+       "level": -20.13
+      },
+      {
+       "file": "studio_roto_hi_03.flac",
+       "level": -19.64
+      }
+     ]
+    },
+    {
+     "key": "roto_lo",
+     "name": "Rototom Lo",
+     "notes": [
+      94
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       8,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_roto_lo_01.flac",
+       "level": -26.47
+      },
+      {
+       "file": "studio_roto_lo_02.flac",
+       "level": -23.69
+      },
+      {
+       "file": "studio_roto_lo_03.flac",
+       "level": -26.17
+      },
+      {
+       "file": "studio_roto_lo_04.flac",
+       "level": -27.31
+      },
+      {
+       "file": "studio_roto_lo_05.flac",
+       "level": -26.23
+      }
+     ]
+    },
+    {
+     "key": "timbale_hi",
+     "name": "Timbale Hi",
+     "notes": [
+      65,
+      79
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       9,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_timbale_hi_01.flac",
+       "level": -17.27
+      }
+     ]
+    },
+    {
+     "key": "timbale_lo",
+     "name": "Timbale Lo",
+     "notes": [
+      66
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       9,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_timbale_lo_01.flac",
+       "level": -18.8
+      },
+      {
+       "file": "studio_timbale_lo_02.flac",
+       "level": -22.72
+      }
+     ]
+    },
+    {
+     "key": "tamb",
+     "name": "Tambourine",
+     "notes": [
+      54
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       10,
+       "mono"
+      ],
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_tamb_01.flac",
+       "level": -39.56
+      },
+      {
+       "file": "studio_tamb_02.flac",
+       "level": -39.07
+      },
+      {
+       "file": "studio_tamb_03.flac",
+       "level": -40.21
+      },
+      {
+       "file": "studio_tamb_04.flac",
+       "level": -40.66
+      },
+      {
+       "file": "studio_tamb_05.flac",
+       "level": -38.61
+      },
+      {
+       "file": "studio_tamb_06.flac",
+       "level": -37.76
+      },
+      {
+       "file": "studio_tamb_07.flac",
+       "level": -40.03
+      },
+      {
+       "file": "studio_tamb_08.flac",
+       "level": -40.39
+      }
+     ]
+    },
+    {
+     "key": "crash",
+     "name": "Crash (from overheads)",
+     "notes": [
+      49,
+      57
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_crash_01.flac",
+       "level": -19.97
+      },
+      {
+       "file": "studio_crash_02.flac",
+       "level": -32.03
+      }
+     ]
+    },
+    {
+     "key": "crash_choke",
+     "name": "Crash Choke",
+     "notes": [
+      55
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       12,
+       "L"
+      ],
+      [
+       12,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "studio_crash_choke_01.flac",
+       "level": -33.89
+      }
+     ]
+    }
+   ],
+   "outputGainDb": 5.0
+  },
+  {
+   "name": "Kit 2",
+   "description": "Punchy one-drop kit from 'Reggae Instrumental 2' with generated room",
+   "articulations": [
+    {
+     "key": "kick",
+     "name": "Kick",
+     "notes": [
+      36,
+      35
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       0,
+       "L"
+      ],
+      [
+       0,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_kick_01.flac",
+       "level": -8.55
+      },
+      {
+       "file": "kit2_kick_02.flac",
+       "level": -8.48
+      },
+      {
+       "file": "kit2_kick_03.flac",
+       "level": -8.51
+      },
+      {
+       "file": "kit2_kick_04.flac",
+       "level": -8.51
+      },
+      {
+       "file": "kit2_kick_05.flac",
+       "level": -8.55
+      },
+      {
+       "file": "kit2_kick_06.flac",
+       "level": -8.46
+      },
+      {
+       "file": "kit2_kick_07.flac",
+       "level": -8.55
+      },
+      {
+       "file": "kit2_kick_08.flac",
+       "level": -8.48
+      }
+     ]
+    },
+    {
+     "key": "cross",
+     "name": "Cross Stick",
+     "notes": [
+      37
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       2,
+       "L"
+      ],
+      [
+       2,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_cross_01.flac",
+       "level": -13.73
+      },
+      {
+       "file": "kit2_cross_02.flac",
+       "level": -13.38
+      },
+      {
+       "file": "kit2_cross_03.flac",
+       "level": -13.35
+      },
+      {
+       "file": "kit2_cross_04.flac",
+       "level": -13.42
+      },
+      {
+       "file": "kit2_cross_05.flac",
+       "level": -13.29
+      },
+      {
+       "file": "kit2_cross_06.flac",
+       "level": -13.64
+      },
+      {
+       "file": "kit2_cross_07.flac",
+       "level": -13.38
+      },
+      {
+       "file": "kit2_cross_08.flac",
+       "level": -13.34
+      }
+     ]
+    },
+    {
+     "key": "snare",
+     "name": "Snare",
+     "notes": [
+      38,
+      40
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       2,
+       "L"
+      ],
+      [
+       2,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_snare_01.flac",
+       "level": -16.0
+      },
+      {
+       "file": "kit2_snare_02.flac",
+       "level": -8.61
+      },
+      {
+       "file": "kit2_snare_03.flac",
+       "level": -3.6
+      },
+      {
+       "file": "kit2_snare_04.flac",
+       "level": -3.79
+      }
+     ]
+    },
+    {
+     "key": "hat_closed",
+     "name": "Hi-Hat Closed",
+     "notes": [
+      42,
+      44
+     ],
+     "choke": 1,
+     "tune": 0.0,
+     "routing": [
+      [
+       4,
+       "L"
+      ],
+      [
+       4,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_hat_closed_01.flac",
+       "level": -11.59
+      },
+      {
+       "file": "kit2_hat_closed_02.flac",
+       "level": -20.49
+      },
+      {
+       "file": "kit2_hat_closed_03.flac",
+       "level": -22.23
+      },
+      {
+       "file": "kit2_hat_closed_04.flac",
+       "level": -16.61
+      },
+      {
+       "file": "kit2_hat_closed_05.flac",
+       "level": -15.15
+      },
+      {
+       "file": "kit2_hat_closed_06.flac",
+       "level": -24.98
+      },
+      {
+       "file": "kit2_hat_closed_07.flac",
+       "level": -18.45
+      },
+      {
+       "file": "kit2_hat_closed_08.flac",
+       "level": -15.91
+      },
+      {
+       "file": "kit2_hat_closed_09.flac",
+       "level": -23.59
+      },
+      {
+       "file": "kit2_hat_closed_10.flac",
+       "level": -21.6
+      }
+     ]
+    },
+    {
+     "key": "tom_hi",
+     "name": "Tom Hi",
+     "notes": [
+      48,
+      50,
+      45,
+      47
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       5,
+       "L"
+      ],
+      [
+       5,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_tom_hi_01.flac",
+       "level": -8.8
+      },
+      {
+       "file": "kit2_tom_hi_02.flac",
+       "level": -9.22
+      }
+     ]
+    },
+    {
+     "key": "tom_floor",
+     "name": "Tom Floor",
+     "notes": [
+      41,
+      43
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       7,
+       "L"
+      ],
+      [
+       7,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_tom_floor_01.flac",
+       "level": -15.64
+      },
+      {
+       "file": "kit2_tom_floor_02.flac",
+       "level": -11.66
+      }
+     ]
+    },
+    {
+     "key": "crash",
+     "name": "Crash",
+     "notes": [
+      49,
+      57
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       11,
+       "L"
+      ],
+      [
+       11,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_crash_01.flac",
+       "level": -21.51
+      },
+      {
+       "file": "kit2_crash_02.flac",
+       "level": -27.63
+      },
+      {
+       "file": "kit2_crash_03.flac",
+       "level": -22.53
+      },
+      {
+       "file": "kit2_crash_04.flac",
+       "level": -28.47
+      }
+     ]
+    },
+    {
+     "key": "shaker",
+     "name": "Shaker",
+     "notes": [
+      82,
+      70
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       10,
+       "L"
+      ],
+      [
+       10,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_shaker_01.flac",
+       "level": -22.63
+      },
+      {
+       "file": "kit2_shaker_02.flac",
+       "level": -24.85
+      },
+      {
+       "file": "kit2_shaker_03.flac",
+       "level": -25.73
+      },
+      {
+       "file": "kit2_shaker_04.flac",
+       "level": -22.6
+      },
+      {
+       "file": "kit2_shaker_05.flac",
+       "level": -23.78
+      },
+      {
+       "file": "kit2_shaker_06.flac",
+       "level": -25.5
+      }
+     ]
+    },
+    {
+     "key": "block",
+     "name": "Jam Block",
+     "notes": [
+      76,
+      77,
+      75
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       10,
+       "L"
+      ],
+      [
+       10,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_block_01.flac",
+       "level": -24.26
+      },
+      {
+       "file": "kit2_block_02.flac",
+       "level": -26.73
+      },
+      {
+       "file": "kit2_block_03.flac",
+       "level": -26.48
+      },
+      {
+       "file": "kit2_block_04.flac",
+       "level": -23.51
+      },
+      {
+       "file": "kit2_block_05.flac",
+       "level": -26.29
+      },
+      {
+       "file": "kit2_block_06.flac",
+       "level": -22.74
+      }
+     ]
+    },
+    {
+     "key": "tamb",
+     "name": "Tambourine",
+     "notes": [
+      54
+     ],
+     "choke": 0,
+     "tune": 0.0,
+     "routing": [
+      [
+       10,
+       "L"
+      ],
+      [
+       10,
+       "R"
+      ],
+      [
+       13,
+       "L"
+      ],
+      [
+       13,
+       "R"
+      ]
+     ],
+     "samples": [
+      {
+       "file": "kit2_tamb_01.flac",
+       "level": -28.83
+      },
+      {
+       "file": "kit2_tamb_02.flac",
+       "level": -28.36
+      },
+      {
+       "file": "kit2_tamb_03.flac",
+       "level": -28.09
+      },
+      {
+       "file": "kit2_tamb_04.flac",
+       "level": -24.33
+      },
+      {
+       "file": "kit2_tamb_05.flac",
+       "level": -25.87
+      },
+      {
+       "file": "kit2_tamb_06.flac",
+       "level": -28.51
+      },
+      {
+       "file": "kit2_tamb_07.flac",
+       "level": -26.14
+      },
+      {
+       "file": "kit2_tamb_08.flac",
+       "level": -26.59
+      }
+     ]
+    }
+   ],
+   "outputGainDb": 6.0
+  }
+ ]
+}
