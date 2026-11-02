@@ -77,16 +77,52 @@ void RFLook::drawLinearSlider (juce::Graphics& g, int x, int y, int w, int h, fl
 {
     if (style == juce::Slider::LinearVertical)
     {
-        const float cx = (float) x + (float) w * 0.5f;
-        g.setColour (juce::Colour (0xff3a332b));
-        g.fillRoundedRectangle (cx - 2.5f, (float) y, 5.0f, (float) h, 2.5f);
-        g.setColour (s.findColour (juce::Slider::rotarySliderFillColourId));
-        g.fillRoundedRectangle (cx - 2.5f, pos, 5.0f, (float) (y + h) - pos, 2.5f);
-        auto thumb = juce::Rectangle<float> (cx - 13.0f, pos - 6.0f, 26.0f, 12.0f);
-        g.setColour (panelHi.brighter (0.4f));
-        g.fillRoundedRectangle (thumb, 3.0f);
-        g.setColour (text);
-        g.drawLine (thumb.getX() + 4, thumb.getCentreY(), thumb.getRight() - 4, thumb.getCentreY(), 1.5f);
+        // ---- console fader: groove, dB scale, metal cap
+        const float cx = (float) x + (float) w * 0.5f + ((bool) s.getProperties().getWithDefault ("dbScale", false) ? 7.0f : 0.0f);
+        auto slot = juce::Rectangle<float> (cx - 3.0f, (float) y - 2.0f, 6.0f, (float) h + 4.0f);
+        g.setColour (juce::Colour (0xff050403));
+        g.fillRoundedRectangle (slot, 3.0f);
+        g.setColour (juce::Colour (0xff2a241f));
+        g.drawRoundedRectangle (slot, 3.0f, 1.0f);
+
+        if ((bool) s.getProperties().getWithDefault ("dbScale", false))
+        {
+            static const float marks[] = { 12.0f, 6.0f, 0.0f, -6.0f, -12.0f, -18.0f, -24.0f, -36.0f, -48.0f, -60.0f };
+            g.setFont (rfFont (9.5f, true));
+            for (float m : marks)
+            {
+                if (m < (float) s.getMinimum() + 1.0f || m > (float) s.getMaximum()) continue;   // the bottom mark is shown as infinity
+                const float py = (float) s.getPositionOfValue ((double) m);
+                const bool zero = std::abs (m) < 0.01f;
+                g.setColour (zero ? gold : juce::Colour (0xff9a8f80));
+                g.drawLine (cx - 15.0f, py, cx - 6.0f, py, zero ? 1.6f : 1.0f);
+                g.drawLine (cx + 6.0f, py, cx + 11.0f, py, 1.0f);
+                g.drawText (m > 0 ? "+" + juce::String ((int) m) : juce::String ((int) m),
+                            juce::Rectangle<float> ((float) x - 2.0f, py - 6.0f, cx - 16.0f - (float) x + 2.0f, 12.0f),
+                            juce::Justification::centredRight, false);
+            }
+            const float pyMin = (float) s.getPositionOfValue (s.getMinimum());
+            g.setColour (juce::Colour (0xff9a8f80));
+            g.drawText (juce::CharPointer_UTF8 ("\xe2\x88\x9e"), juce::Rectangle<float> ((float) x - 2.0f, pyMin - 7.0f, cx - 16.0f - (float) x + 2.0f, 12.0f),
+                        juce::Justification::centredRight, false);
+        }
+
+        const float capW = juce::jmin ((float) w * 0.62f, 38.0f), capH = 24.0f;
+        auto cap = juce::Rectangle<float> (cx - capW * 0.5f, pos - capH * 0.5f, capW, capH);
+        g.setColour (juce::Colours::black.withAlpha (0.55f));
+        g.fillRoundedRectangle (cap.translated (0.0f, 3.0f), 3.0f);
+        g.setGradientFill (juce::ColourGradient (juce::Colour (0xffe9e6df), cap.getX(), cap.getY(),
+                                                 juce::Colour (0xff5b5852), cap.getX(), cap.getBottom(), false));
+        g.fillRoundedRectangle (cap, 3.0f);
+        g.setColour (juce::Colour (0xff2b2925));
+        g.drawRoundedRectangle (cap, 3.0f, 1.0f);
+        for (float gy : { -7.0f, -4.0f, 4.0f, 7.0f })
+        {
+            g.setColour (juce::Colour (0x55000000));
+            g.drawLine (cap.getX() + 4.0f, cap.getCentreY() + gy, cap.getRight() - 4.0f, cap.getCentreY() + gy, 1.0f);
+        }
+        g.setColour (s.findColour (juce::Slider::rotarySliderFillColourId).brighter (0.2f));
+        g.fillRect (cap.getX() + 2.0f, cap.getCentreY() - 1.0f, capW - 4.0f, 2.0f);
     }
     else
     {
@@ -228,12 +264,68 @@ static void layoutRow (std::vector<juce::Component*> items, juce::Rectangle<int>
 //==============================================================================
 // RIDDIM PAGE
 //==============================================================================
+// Segmented LED meter (green / amber / red) with a peak marker
+static void drawLedMeter (juce::Graphics& g, juce::Rectangle<float> r, float level, float peak)
+{
+    g.setColour (juce::Colour (0xff080706));
+    g.fillRoundedRectangle (r.expanded (1.5f), 2.0f);
+    const int segs = juce::jmax (8, (int) (r.getHeight() / 5.0f));
+    const float sh = r.getHeight() / (float) segs;
+    const float lvlDb = juce::Decibels::gainToDecibels (level, -100.0f);
+    const float pkDb = juce::Decibels::gainToDecibels (peak, -100.0f);
+    int pkSeg = -1;
+    for (int i = 0; i < segs; ++i)
+    {
+        const float segDb = -48.0f + 51.0f * (float) (i + 1) / (float) segs;   // -48 .. +3 dB
+        juce::Colour c = segDb > -3.0f ? juce::Colour (0xffff3b2f) : (segDb > -12.0f ? juce::Colour (0xffffc23a) : juce::Colour (0xff3ad85a));
+        const bool lit = lvlDb >= segDb - 51.0f / (float) segs;
+        if (pkDb >= segDb - 51.0f / (float) segs) pkSeg = i;
+        auto seg = juce::Rectangle<float> (r.getX(), r.getBottom() - (float) (i + 1) * sh + 0.8f, r.getWidth(), sh - 1.6f);
+        g.setColour (lit ? c : c.withAlpha (0.12f));
+        g.fillRect (seg);
+    }
+    if (pkSeg >= 0)
+    {
+        g.setColour (juce::Colours::white.withAlpha (0.85f));
+        g.fillRect (r.getX(), r.getBottom() - (float) (pkSeg + 1) * sh + 0.8f, r.getWidth(), 1.6f);
+    }
+}
+
+// A button that switches one or more bool parameters together (e.g. Drums + Perc)
+class LinkedToggle : public juce::TextButton, private juce::Timer
+{
+public:
+    LinkedToggle (APVTS& s, std::vector<juce::String> paramIds, const juce::String& buttonText, juce::Colour on)
+        : juce::TextButton (buttonText)
+    {
+        for (auto& id : paramIds) if (auto* p = s.getParameter (id)) params.push_back (p);
+        setColour (juce::TextButton::buttonOnColourId, on);
+        setColour (juce::TextButton::textColourOnId, juce::Colour (0xff14110f));
+        onClick = [this]
+        {
+            const bool v = ! getToggleState();
+            for (auto* p : params) { p->beginChangeGesture(); p->setValueNotifyingHost (v ? 1.0f : 0.0f); p->endChangeGesture(); }
+            setToggleState (v, juce::dontSendNotification);
+        };
+        timerCallback();
+        startTimerHz (12);
+    }
+private:
+    void timerCallback() override
+    {
+        bool v = false;
+        for (auto* p : params) v |= p->getValue() > 0.5f;
+        if (v != getToggleState()) setToggleState (v, juce::dontSendNotification);
+    }
+    std::vector<juce::RangedAudioParameter*> params;
+};
+
 class DragMidiBox : public juce::Component
 {
 public:
-    DragMidiBox (RiddimForgeProcessor& p, std::function<int()> barsFn, unsigned mask = 0xffu,
-                 juce::String labelText = "DRAG MIDI TO DAW", juce::String fileSuffix = {})
-        : proc (p), bars (std::move (barsFn)), partMask (mask), label (std::move (labelText)), suffix (std::move (fileSuffix))
+    DragMidiBox (RiddimForgeProcessor& p, std::function<int()> barsFn, std::function<unsigned()> maskFn = nullptr,
+                 juce::String labelText = "DRAG MIDI TO DAW", juce::String fileSuffix = {}, bool forceOnParts = false)
+        : proc (p), bars (std::move (barsFn)), partMask (std::move (maskFn)), label (std::move (labelText)), suffix (std::move (fileSuffix)), forceOn (forceOnParts)
     {
         setMouseCursor (juce::MouseCursor::DraggingHandCursor);
         setTooltip ("Drag this onto a track in your DAW");
@@ -258,7 +350,7 @@ public:
         juce::FileOutputStream out (file);
         if (out.openedOk())
         {
-            proc.createRiddimMidi (bars(), partMask).writeTo (out);
+            proc.createRiddimMidi (bars(), partMask ? partMask() : 0xffu, forceOn).writeTo (out);
             out.flush();
             juce::DragAndDropContainer::performExternalDragDropOfFiles ({ file.getFullPathName() }, false, this,
                                                                         [this] { dragging = false; });
@@ -271,8 +363,9 @@ public:
 private:
     RiddimForgeProcessor& proc;
     std::function<int()> bars;
-    unsigned partMask;
+    std::function<unsigned()> partMask;
     juce::String label, suffix;
+    bool forceOn = false;
     bool dragging = false;
 };
 
@@ -424,50 +517,86 @@ class Strip : public juce::Component
 public:
     Strip (RiddimForgeProcessor& p, int part)
         : proc (p), idx (part),
-          pan (p.apvts, ids::pan (part), "Pan", RFLook::text.withAlpha (0.8f)),
-          dly (p.apvts, ids::dly (part), "Echo", RFLook::green),
-          rev (p.apvts, ids::rev (part), "Verb", RFLook::red),
-          mute (p.apvts, ids::mute (part), "MUTE", RFLook::red)
+          pan (p.apvts, ids::pan (part), "PAN", juce::Colour (0xffd9d2c5)),
+          dly (p.apvts, ids::dly (part), "ECHO", RFLook::green),
+          rev (p.apvts, ids::rev (part), "VERB", juce::Colour (0xff4fa3ff)),
+          on (p.apvts, part <= rf::PartPerc ? std::vector<juce::String> { ids::seq (part) } : std::vector<juce::String> { ids::seq (part) }, "ON", RFLook::green),
+          mute (p.apvts, ids::mute (part), "M", juce::Colour (0xffff7a1a)),
+          solo (p.apvts, ids::solo (part), "S", juce::Colour (0xffffd23a))
     {
         fader.setSliderStyle (juce::Slider::LinearVertical);
-        fader.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 64, 16);
+        fader.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 70, 18);
         fader.setColour (juce::Slider::rotarySliderFillColourId, RFLook::gold);
-        fader.setColour (juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack);
+        fader.setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0xff2a241f));
+        fader.setColour (juce::Slider::textBoxBackgroundColourId, juce::Colour (0xff0b0a08));
+        fader.setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff7dff8a));
+        fader.getProperties().set ("dbScale", true);
         att = std::make_unique<APVTS::SliderAttachment> (p.apvts, ids::lvl (part), fader);
         fader.setDoubleClickReturnValue (true, (double) p.apvts.getParameterRange (ids::lvl (part))
             .convertFrom0to1 (p.apvts.getParameter (ids::lvl (part))->getDefaultValue()));
-        for (auto* c : std::initializer_list<juce::Component*> { &fader, &pan, &dly, &rev, &mute }) addAndMakeVisible (c);
+        for (auto* k : { &pan, &dly, &rev }) k->slider.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
+        for (auto* b : { &mute, &solo }) b->setColour (juce::TextButton::textColourOnId, juce::Colour (0xff14110f));
+        for (auto* c : std::initializer_list<juce::Component*> { &fader, &pan, &dly, &rev, &on, &mute, &solo }) addAndMakeVisible (c);
     }
     void paint (juce::Graphics& g) override
     {
         auto r = getLocalBounds().toFloat();
-        g.setColour (RFLook::panel);
-        g.fillRoundedRectangle (r, 8.0f);
-        g.setColour (RFLook::text);
-        g.setFont (rfFont (14.0f, true));
-        g.drawText (juce::String (rf::partName (idx)).toUpperCase(), getLocalBounds().removeFromTop (26), juce::Justification::centred);
-        // meter
-        const float m = juce::jlimit (0.0f, 1.0f, proc.engine.uiMeter[idx].load());
-        const float db = juce::Decibels::gainToDecibels (m, -60.0f);
-        const float frac = juce::jmap (db, -60.0f, 0.0f, 0.0f, 1.0f);
-        auto mr = meterArea.toFloat();
+        // brushed dark metal channel
+        g.setGradientFill (juce::ColourGradient (juce::Colour (0xff2b2622), r.getX(), r.getY(), juce::Colour (0xff1a1714), r.getRight(), r.getY(), false));
+        g.fillRoundedRectangle (r, 6.0f);
+        juce::Random rnd ((juce::int64) idx + 7);
+        for (int i = 0; i < 40; ++i)
+        {
+            g.setColour (juce::Colours::white.withAlpha (0.015f + 0.02f * rnd.nextFloat()));
+            const float lx = r.getX() + rnd.nextFloat() * r.getWidth();
+            g.drawVerticalLine ((int) lx, r.getY() + 4.0f, r.getBottom() - 4.0f);
+        }
+        g.setColour (juce::Colour (0xff3d362f));
+        g.drawRoundedRectangle (r.reduced (0.5f), 6.0f, 1.0f);
+        // section separators
         g.setColour (juce::Colour (0xff0e0c0a));
-        g.fillRoundedRectangle (mr, 2.0f);
-        auto lvl = mr.withTop (mr.getBottom() - mr.getHeight() * frac);
-        g.setGradientFill (juce::ColourGradient (RFLook::green, mr.getX(), mr.getBottom(), RFLook::red, mr.getX(), mr.getY(), false));
-        g.fillRoundedRectangle (lvl, 2.0f);
+        for (int sy : sepY) g.drawHorizontalLine (sy, r.getX() + 6.0f, r.getRight() - 6.0f);
+
+        // LED meter with peak hold
+        const float m = juce::jlimit (0.0f, 1.5f, proc.engine.uiMeter[idx].load());
+        peak = juce::jmax (m, peak * 0.97f);
+        drawLedMeter (g, meterArea.toFloat(), m, peak);
+
+        // scribble strip
+        auto tape = scribble.toFloat();
+        g.setColour (juce::Colour (0xffece4cf));
+        g.fillRoundedRectangle (tape, 2.0f);
+        g.setColour (juce::Colour (0x22000000));
+        g.drawRoundedRectangle (tape, 2.0f, 1.0f);
+        g.setColour (juce::Colour (0xff1c2a6b));
+        g.setFont (juce::Font (juce::FontOptions ("Marker Felt", 15.0f, juce::Font::bold)));
+        g.drawFittedText (juce::String (rf::partName (idx)).toUpperCase(), scribble, juce::Justification::centred, 1);
+
+        // channel number
+        g.setColour (juce::Colour (0xff8c8274));
+        g.setFont (rfFont (10.0f, true));
+        g.drawText (juce::String (idx + 1), getLocalBounds().removeFromTop (16).reduced (6, 0), juce::Justification::centredLeft);
     }
     void resized() override
     {
-        auto r = getLocalBounds().reduced (6);
-        r.removeFromTop (22);
-        mute.setBounds (r.removeFromBottom (26).reduced (4, 0));
+        sepY.clear();
+        auto r = getLocalBounds().reduced (6, 6);
+        r.removeFromTop (12);
+        on.setBounds (r.removeFromTop (24).reduced (2, 0));
+        r.removeFromTop (6); sepY.push_back (r.getY());
+        auto sends = r.removeFromTop (62);
+        dly.setBounds (sends.removeFromLeft (sends.getWidth() / 2));
+        rev.setBounds (sends);
+        pan.setBounds (r.removeFromTop (58).withSizeKeepingCentre (juce::jmin (64, r.getWidth()), 58));
+        r.removeFromTop (4); sepY.push_back (r.getY());
+        auto ms = r.removeFromTop (26).reduced (2, 0);
+        mute.setBounds (ms.removeFromLeft (ms.getWidth() / 2).reduced (2, 0));
+        solo.setBounds (ms.reduced (2, 0));
+        r.removeFromTop (6);
+        scribble = r.removeFromBottom (26).reduced (2, 0);
         r.removeFromBottom (6);
-        auto knobs = r.removeFromBottom (3 * 68);
-        pan.setBounds (knobs.removeFromTop (68));
-        dly.setBounds (knobs.removeFromTop (68));
-        rev.setBounds (knobs.removeFromTop (68));
-        meterArea = r.removeFromRight (8).withTrimmedBottom (20).withTrimmedTop (4);
+        meterArea = r.removeFromRight (9).withTrimmedBottom (26).withTrimmedTop (6);
+        r.removeFromRight (3);
         fader.setBounds (r);
     }
 
@@ -477,8 +606,11 @@ private:
     juce::Slider fader;
     std::unique_ptr<APVTS::SliderAttachment> att;
     Knob pan, dly, rev;
-    Toggle mute;
-    juce::Rectangle<int> meterArea;
+    LinkedToggle on;
+    Toggle mute, solo;
+    juce::Rectangle<int> meterArea, scribble;
+    std::vector<int> sepY;
+    float peak = 0.0f;
 };
 
 class MixerPage : public juce::Component, private juce::Timer
@@ -754,14 +886,17 @@ class MicStrip : public juce::Component
 public:
     MicStrip (RiddimForgeProcessor& p, int bus)
         : proc (p), idx (bus),
-          mute (p.apvts, ids::micMute (bus), "M", RFLook::red),
-          solo (p.apvts, ids::micSolo (bus), "S", RFLook::gold)
+          mute (p.apvts, ids::micMute (bus), "M", juce::Colour (0xffff7a1a)),
+          solo (p.apvts, ids::micSolo (bus), "S", juce::Colour (0xffffd23a))
     {
         fader.setSliderStyle (juce::Slider::LinearVertical);
         fader.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 52, 14);
         fader.setColour (juce::Slider::rotarySliderFillColourId, bus >= rf::BusOverheads ? RFLook::green : RFLook::gold);
         fader.setColour (juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack);
+        fader.setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff7dff8a));
+        fader.setColour (juce::Slider::textBoxBackgroundColourId, juce::Colour (0xff0b0a08));
         fAtt = std::make_unique<APVTS::SliderAttachment> (p.apvts, ids::micLvl (bus), fader);
+        for (auto* b : { &mute, &solo }) b->setColour (juce::TextButton::textColourOnId, juce::Colour (0xff14110f));
         fader.setDoubleClickReturnValue (true, bus == rf::BusRoom ? -4.0 : 0.0);
         pan.setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
         pan.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
@@ -773,19 +908,17 @@ public:
     }
     void paint (juce::Graphics& g) override
     {
-        g.setColour (RFLook::panel);
+        g.setGradientFill (juce::ColourGradient (juce::Colour (0xff2b2622), 0, 0, juce::Colour (0xff1a1714), (float) getWidth(), 0, false));
         g.fillRoundedRectangle (getLocalBounds().toFloat(), 6.0f);
+        g.setColour (juce::Colour (0xff3d362f));
+        g.drawRoundedRectangle (getLocalBounds().toFloat().reduced (0.5f), 6.0f, 1.0f);
         g.setColour (RFLook::text);
         g.setFont (rfFont (11.0f, true));
         g.drawFittedText (juce::String (rf::micBusName (idx)).toUpperCase(), getLocalBounds().removeFromTop (30).reduced (2, 2),
                           juce::Justification::centred, 2);
-        const float m = juce::jlimit (0.0f, 1.0f, proc.engine.getSampler().busMeter[idx].load());
-        const float frac = juce::jmap (juce::Decibels::gainToDecibels (m, -60.0f), -60.0f, 0.0f, 0.0f, 1.0f);
-        auto mr = meter.toFloat();
-        g.setColour (juce::Colour (0xff0e0c0a));
-        g.fillRoundedRectangle (mr, 2.0f);
-        g.setGradientFill (juce::ColourGradient (RFLook::green, mr.getX(), mr.getBottom(), RFLook::red, mr.getX(), mr.getY(), false));
-        g.fillRoundedRectangle (mr.withTop (mr.getBottom() - mr.getHeight() * frac), 2.0f);
+        const float m = juce::jlimit (0.0f, 1.5f, proc.engine.getSampler().busMeter[idx].load());
+        peak = juce::jmax (m, peak * 0.97f);
+        drawLedMeter (g, meter.toFloat(), m, peak);
     }
     void resized() override
     {
@@ -807,6 +940,7 @@ private:
     std::unique_ptr<APVTS::SliderAttachment> fAtt, pAtt;
     Toggle mute, solo;
     juce::Rectangle<int> meter;
+    float peak = 0.0f;
 };
 
 class DrumsPage : public juce::Component,
@@ -1086,14 +1220,15 @@ public:
         : proc (p), part (gp),
           type (p.apvts, ids::genType (gp), rf::genPartName (gp)),
           cx (p.apvts, ids::genCx (gp), "Complexity", RFLook::gold, true),
-          play (p.apvts, ids::genUse (gp), "PLAY", RFLook::green),
-          drag (p, [&p] { return p.generatorBars(); }, RiddimForgeProcessor::partMaskForGen (gp), "DRAG", rf::genPartName (gp)),
+          on (p.apvts, partIds (gp, true), "ON", RFLook::green),
+          solo (p.apvts, partIds (gp, false), "SOLO", juce::Colour (0xffffd23a)),
+          drag (p, [&p] { return p.generatorBars(); }, [gp] { return RiddimForgeProcessor::partMaskForGen (gp); }, "DRAG", rf::genPartName (gp), true),
           preview (p, gp)
     {
         genBtn.setColour (juce::TextButton::buttonOnColourId, RFLook::gold);
         genBtn.onClick = [this] { proc.generate (part, true); };
         clrBtn.onClick = [this] { proc.clearGenerated (part); };
-        for (auto* c : std::initializer_list<juce::Component*> { &type, &cx, &genBtn, &play, &clrBtn, &drag, &preview }) addAndMakeVisible (c);
+        for (auto* c : std::initializer_list<juce::Component*> { &type, &cx, &genBtn, &on, &solo, &clrBtn, &drag, &preview }) addAndMakeVisible (c);
     }
     void paint (juce::Graphics& g) override
     {
@@ -1107,13 +1242,15 @@ public:
         r.removeFromLeft (10);
         cx.setBounds (r.removeFromLeft (130).withSizeKeepingCentre (130, 46));
         r.removeFromLeft (6);
-        auto btns = r.removeFromLeft (200);
+        auto btns = r.removeFromLeft (250);
         auto top = btns.removeFromTop (btns.getHeight() / 2).reduced (0, 2);
-        genBtn.setBounds (top.removeFromLeft (120));
+        genBtn.setBounds (top.removeFromLeft (112));
         top.removeFromLeft (4);
-        play.setBounds (top);
+        on.setBounds (top.removeFromLeft ((top.getWidth() - 4) / 2));
+        top.removeFromLeft (4);
+        solo.setBounds (top);
         auto bot = btns.reduced (0, 2);
-        clrBtn.setBounds (bot.removeFromLeft (120));
+        clrBtn.setBounds (bot.removeFromLeft (112));
         bot.removeFromLeft (4);
         drag.setBounds (bot);
         r.removeFromLeft (8);
@@ -1126,8 +1263,16 @@ private:
     int part;
     Combo type;
     Knob cx;
+    static std::vector<juce::String> partIds (int gp, bool onParam)
+    {
+        std::vector<juce::String> v;
+        auto add = [&] (int part) { v.push_back (onParam ? ids::seq (part) : ids::solo (part)); };
+        if (gp == rf::GPDrums) { add (rf::PartDrums); add (rf::PartPerc); }
+        else add (rf::genPartToRiddimPart (gp));
+        return v;
+    }
     juce::TextButton genBtn { "GENERATE" }, clrBtn { "USE STYLE" };
-    Toggle play;
+    LinkedToggle on, solo;
     DragMidiBox drag;
     PhrasePreview preview;
 };
@@ -1138,8 +1283,8 @@ public:
     explicit GeneratorPage (RiddimForgeProcessor& p)
         : proc (p), bars (p.apvts, ids::genBars, "Length"), fills (p.apvts, ids::genFillEvery, "Drum Fills"),
           fillInt (p.apvts, ids::genFillInt, "Fill Intensity", RFLook::red, true),
-          playAll (p.apvts, ids::genOn, "PLAY GENERATED", RFLook::green),
-          dragAll (p, [&p] { return p.generatorBars(); }, 0xffu, "DRAG ALL MIDI", "Generated")
+          playAll (p.apvts, ids::genOn, "GENERATED PARTS ON", RFLook::green),
+          dragAll (p, [&p] { return p.generatorBars(); }, [&p] { return p.generatedPartsMask(); }, "DRAG ALL MIDI", "Generated", true)
     {
         genAll.setColour (juce::TextButton::buttonOnColourId, RFLook::gold);
         genAll.onClick = [this] { proc.generate (-1, true); };
@@ -1204,6 +1349,8 @@ RiddimForgeEditor::RiddimForgeEditor (RiddimForgeProcessor& p)
 {
     setLookAndFeel (&look);
 
+    playButton = std::make_unique<LinkedToggle> (p.apvts, std::vector<juce::String> { ids::preview }, "PLAY", RFLook::gold);
+    addAndMakeVisible (*playButton);
     riddimButton.setClickingTogglesState (true);
     riddimButton.setColour (juce::TextButton::buttonOnColourId, RFLook::green);
     riddimAtt = std::make_unique<APVTS::ButtonAttachment> (p.apvts, ids::riddimOn, riddimButton);
@@ -1298,7 +1445,7 @@ void RiddimForgeEditor::paint (juce::Graphics& g)
     }
     g.setColour (RFLook::dim);
     g.setFont (rfFont (11.0f, true));
-    g.drawText (running ? "RIDDIM RUNNING" : (proc.engine.params.riddimOn ? "WAITING FOR TRANSPORT" : "RIDDIM OFF"),
+    g.drawText (running ? "RIDDIM RUNNING" : (proc.engine.params.riddimOn ? "PRESS PLAY (OR PLAY YOUR DAW)" : "RIDDIM OFF"),
                 lr.withY (lr.getBottom() + 2).withHeight (16), juce::Justification::centredLeft);
 
     // chord
@@ -1319,7 +1466,9 @@ void RiddimForgeEditor::resized()
     auto head = r.removeFromTop (78).reduced (14, 10).withTrimmedBottom (6);
     head.removeFromLeft (380);
 
-    auto right = head.removeFromRight (360);
+    auto right = head.removeFromRight (450);
+    playButton->setBounds (right.removeFromLeft (84).withSizeKeepingCentre (84, 34));
+    right.removeFromLeft (8);
     riddimButton.setBounds (right.removeFromLeft (90).withSizeKeepingCentre (90, 34));
     right.removeFromLeft (8);
     clockBox.setBounds (right.removeFromLeft (110).withSizeKeepingCentre (110, 30));
@@ -1352,6 +1501,7 @@ void RiddimForgeEditor::timerCallback()
         repaint (getLocalBounds().removeFromTop (78));
     }
 
+    playButton->setButtonText (playButton->getToggleState() ? "STOP" : "PLAY");
     static const char* targets[] = { "Drums & Perc", "Skank Guitar", "Piano", "Organ", "Bass", "Lead", "Pad" };
     const int t = juce::jlimit (0, 6, juce::roundToInt (proc.apvts.getRawParameterValue (ids::ch1Target)->load()));
     keyboardLabel.setText (juce::String ("KEYBOARD / MIDI CH 1 PLAYS: ") + targets[t] + "   (change on the Riddim tab)",

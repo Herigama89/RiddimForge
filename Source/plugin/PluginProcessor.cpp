@@ -7,13 +7,14 @@ namespace
 {
 struct PartDefault { float db, pan, dly, rev; bool seq; };
 const PartDefault kPartDefaults[rf::kNumParts] = {
+    // only the drums start ON - switch the other parts on yourself
     { -1.4f,  0.0f,  0.0f,  0.10f, true },  // Drums
     { -4.4f,  0.0f,  0.12f, 0.18f, true },  // Perc
-    { -4.4f,  0.25f, 0.18f, 0.25f, true },  // Skank
-    { -8.4f, -0.25f, 0.08f, 0.20f, true },  // Piano
-    { -8.9f, -0.1f,  0.0f,  0.15f, true },  // Organ
-    { -4.7f,  0.0f,  0.0f,  0.0f,  true },  // Bass
-    { -4.4f,  0.1f,  0.30f, 0.30f, true },  // Lead (plays only when generated or played)
+    { -4.4f,  0.25f, 0.18f, 0.25f, false }, // Skank
+    { -8.4f, -0.25f, 0.08f, 0.20f, false }, // Piano
+    { -8.9f, -0.1f,  0.0f,  0.15f, false }, // Organ
+    { -4.7f,  0.0f,  0.0f,  0.0f,  false }, // Bass
+    { -4.4f,  0.1f,  0.30f, 0.30f, false }, // Lead
     { -6.9f,  0.0f,  0.0f,  0.35f, false }, // Pad
 };
 
@@ -94,6 +95,7 @@ APVTS::ParameterLayout RiddimForgeProcessor::createLayout()
 
     // ---- riddim -----------------------------------------------------------
     layout.add (std::make_unique<AudioParameterBool> (pid (ids::riddimOn), "Riddim On", true));
+    layout.add (std::make_unique<AudioParameterBool> (pid (ids::preview), "Play (Preview)", false));
     layout.add (std::make_unique<AudioParameterChoice> (pid (ids::runMode), "Riddim Clock", StringArray { "Host Sync", "Free Run" }, 0));
     layout.add (std::make_unique<AudioParameterFloat> (pid (ids::freeBpm), "Free Run BPM", NormalisableRange<float> (40.0f, 200.0f, 0.1f), 75.0f,
                                                        AudioParameterFloatAttributes().withLabel ("BPM")));
@@ -119,7 +121,8 @@ APVTS::ParameterLayout RiddimForgeProcessor::createLayout()
         layout.add (std::make_unique<AudioParameterFloat> (pid (ids::dly (p)), n + " Delay Send", NormalisableRange<float> (0.0f, 1.0f), d.dly, pct));
         layout.add (std::make_unique<AudioParameterFloat> (pid (ids::rev (p)), n + " Reverb Send", NormalisableRange<float> (0.0f, 1.0f), d.rev, pct));
         layout.add (std::make_unique<AudioParameterBool> (pid (ids::mute (p)), n + " Mute", false));
-        layout.add (std::make_unique<AudioParameterBool> (pid (ids::seq (p)), n + " In Riddim", d.seq));
+        layout.add (std::make_unique<AudioParameterBool> (pid (ids::seq (p)), n + " On", d.seq));
+        layout.add (std::make_unique<AudioParameterBool> (pid (ids::solo (p)), n + " Solo", false));
     }
 
     // ---- drums ------------------------------------------------------------
@@ -287,6 +290,7 @@ void RiddimForgeProcessor::pullParams()
 {
     auto& P = engine.params;
     P.riddimOn = getB (ids::riddimOn);
+    P.preview = getB (ids::preview);
     P.runMode = getI (ids::runMode);
     P.freeBpm = getF (ids::freeBpm);
     P.riddim = readRiddimSettings();
@@ -300,6 +304,7 @@ void RiddimForgeProcessor::pullParams()
         pp.delay = getF (ids::dly (p));
         pp.reverb = getF (ids::rev (p));
         pp.mute = getB (ids::mute (p));
+        pp.solo = getB (ids::solo (p));
     }
 
     P.drums.kickTune = getF (ids::kickTune);
@@ -406,9 +411,11 @@ juce::String RiddimForgeProcessor::riddimFileName (const juce::String& suffix) c
     return juce::File::createLegalFileName (name.replace ("(", "").replace (")", "").replace ("&", "and")) + ".mid";
 }
 
-juce::MidiFile RiddimForgeProcessor::createRiddimMidi (int bars, unsigned partMask) const
+juce::MidiFile RiddimForgeProcessor::createRiddimMidi (int bars, unsigned partMask, bool forceOn) const
 {
-    const auto s = readRiddimSettings();
+    auto s = readRiddimSettings();
+    if (forceOn)
+        for (int p = 0; p < rf::kNumParts; ++p) if (partMask & (1u << (unsigned) p)) s.partOn[(size_t) p] = true;
     const double bpm = lastBpm.load() > 0 ? lastBpm.load() : 75.0;
     const int tpq = 960;
     const double tps = tpq / 4.0; // ticks per 16th
@@ -505,6 +512,13 @@ int RiddimForgeProcessor::generatorBars() const
 {
     static const int b[] = { 1, 2, 4, 8, 16 };
     return b[juce::jlimit (0, 4, getI (ids::genBars))];
+}
+
+unsigned RiddimForgeProcessor::generatedPartsMask() const
+{
+    unsigned m = 0;
+    for (int gp = 0; gp < rf::kNumGenParts; ++gp) if (generated[(size_t) gp]) m |= partMaskForGen (gp);
+    return m;
 }
 
 unsigned RiddimForgeProcessor::partMaskForGen (int gp)

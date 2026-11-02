@@ -77,13 +77,17 @@ killall -9 AudioComponentRegistrar
 ## 2. Using it
 
 ### Instant riddim
-Load it, press play in your DAW. With **RIDDIM** on and the clock on **Host Sync**, it plays the selected style
-locked to your DAW's tempo and bar position. Switch the clock to **Free Run** to jam without a transport
-(or in the standalone app).
+1. Load RiddimForge and press **PLAY** in the plugin (top right), or press play in your DAW.
+   With **RIDDIM** lit, the riddim plays at your DAW's tempo. In **Free Run** it uses the plugin's own BPM,
+   and only plays while PLAY is pressed.
+2. **Only the drums start ON.** Switch on each other part yourself: the **ON** buttons on the Mixer tab,
+   the green part buttons on the Riddim tab, or **ON** on each Generator row.
+3. **SOLO** (Mixer **S** buttons, or **SOLO** on a Generator row) plays just that part, so you can audition parts
+   one at a time. **M** mutes a channel.
 
-On the **Riddim** tab pick the style, key, chord progression and chord length, then use the green buttons
-to choose which parts the riddim plays. Swing (0–20% is a straight-ish roots feel, 40%+ shuffles), Humanize
-adds small timing and velocity variation, and Fills drops a timbale or tom roll every 4 or 8 bars.
+On the **Riddim** tab pick the style, key, chord progression and chord length. Swing (0–20% is a straight-ish
+roots feel, 40%+ shuffles), Humanize adds small timing and velocity variation, and Fills drops a timbale or tom
+roll every 4 or 8 bars.
 
 ### Play it yourself
 | MIDI channel | Plays |

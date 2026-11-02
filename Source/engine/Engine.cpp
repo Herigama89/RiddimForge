@@ -244,18 +244,19 @@ void Engine::runSequencer (int n, const Transport& t)
     bool run = false;
     double ppq0 = 0.0, bpm = t.bpm > 0 ? t.bpm : 120.0;
 
-    if (params.riddimOn)
+    // Host Sync: follows the DAW's transport, or the PLAY button when the DAW is stopped.
+    // Free Run : only the PLAY button, at the plugin's own tempo.
+    const bool hostRunning = params.runMode == 0 && t.hostPlaying && t.hasPpq;
+    if (params.riddimOn && hostRunning)
     {
-        if (params.runMode == 1)
-        {
-            if (! freeRunning) { freePpq = 0.0; freeRunning = true; }
-            run = true; ppq0 = freePpq; bpm = clampf (params.freeBpm, 40.0f, 220.0f);
-        }
-        else
-        {
-            freeRunning = false;
-            if (t.hostPlaying && t.hasPpq) { run = true; ppq0 = t.ppq; }
-        }
+        freeRunning = false;
+        run = true; ppq0 = t.ppq;
+    }
+    else if (params.riddimOn && params.preview)
+    {
+        if (! freeRunning) { freePpq = 0.0; freeRunning = true; }
+        run = true; ppq0 = freePpq;
+        bpm = params.runMode == 1 || t.bpm <= 0 ? clampf (params.freeBpm, 40.0f, 220.0f) : t.bpm;
     }
     else freeRunning = false;
 
@@ -276,7 +277,7 @@ void Engine::runSequencer (int n, const Transport& t)
 
     const double spq = sr * 60.0 / bpm;              // samples per quarter note
     const double ppq1 = ppq0 + (double) n / spq;
-    if (params.runMode == 1) freePpq = ppq1;
+    if (freeRunning) freePpq = ppq1;
 
     auto& rs = params.riddim;
     const int64_t kStart = (int64_t) std::ceil (ppq0 * 4.0 - 1e-7);
@@ -329,10 +330,13 @@ void Engine::mix (float* outL, float* outR, int n, double bpm)
     std::fill (outL, outL + n, 0.0f);
     std::fill (outR, outR + n, 0.0f);
 
+    bool anySolo = false;
+    for (const auto& pp : params.part) anySolo |= pp.solo;
     for (int p = 0; p < kNumParts; ++p)
     {
         const auto& pp = params.part[p];
-        gainSm[p].setTarget (pp.mute ? 0.0f : pp.level, n);
+        const bool audible = ! pp.mute && (! anySolo || pp.solo);
+        gainSm[p].setTarget (audible ? pp.level : 0.0f, n);
         float gl, gr;
         panGains (pp.pan, gl, gr);
         const float* l = partL[p].data();

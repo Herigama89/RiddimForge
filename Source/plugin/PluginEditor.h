@@ -34,6 +34,7 @@ private:
     RFLook look;
 
     // header controls
+    std::unique_ptr<juce::TextButton> playButton;
     juce::TextButton riddimButton { "RIDDIM" };
     juce::ComboBox clockBox;
     juce::Slider bpmSlider;

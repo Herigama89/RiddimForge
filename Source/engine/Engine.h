@@ -20,6 +20,7 @@ struct PartParams
     float delay = 0.0f;   // send 0..1
     float reverb = 0.0f;  // send 0..1
     bool mute = false;
+    bool solo = false;
 };
 
 struct EngineParams
@@ -27,7 +28,8 @@ struct EngineParams
     PartParams part[kNumParts];
 
     bool riddimOn = true;
-    int runMode = 0;          // 0 = follow host transport, 1 = free run
+    bool preview = false;     // the plugin's own PLAY button
+    int runMode = 0;          // 0 = host sync (DAW play or PLAY button), 1 = internal tempo (PLAY button)
     float freeBpm = 75.0f;
     RiddimSettings riddim;
 

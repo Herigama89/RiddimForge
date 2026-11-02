@@ -9,6 +9,7 @@ namespace ids
 {
 // global
 inline constexpr const char* riddimOn   = "riddimOn";
+inline constexpr const char* preview    = "preview";
 inline constexpr const char* runMode    = "runMode";
 inline constexpr const char* freeBpm    = "freeBpm";
 inline constexpr const char* style      = "style";
@@ -77,6 +78,7 @@ inline juce::String dly (int p)  { return "dly" + juce::String (p); }
 inline juce::String rev (int p)  { return "rev" + juce::String (p); }
 inline juce::String mute (int p) { return "mute" + juce::String (p); }
 inline juce::String seq (int p)  { return "seq" + juce::String (p); }
+inline juce::String solo (int p) { return "solo" + juce::String (p); }
 } // namespace ids
 
 class RiddimForgeProcessor : public juce::AudioProcessor,
@@ -113,7 +115,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     // Builds a multi-track MIDI file of the current riddim (partMask: bit per rf::PartId)
-    juce::MidiFile createRiddimMidi (int bars, unsigned partMask = 0xffu) const;
+    // forceOn: export the masked parts even if they are switched off in the mix (generator drag)
+    juce::MidiFile createRiddimMidi (int bars, unsigned partMask = 0xffu, bool forceOn = false) const;
+    unsigned generatedPartsMask() const;
     juce::String riddimFileName (const juce::String& suffix = {}) const;
 
     // ---- sampled kits ------------------------------------------------------
